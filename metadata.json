@@ -1,0 +1,6 @@
+{
+  "name": "CursedTools",
+  "description": "Порчегенератор 3000 и сборник абсурдных, тупых, но гениальных инструментов с отслеживанием проклятий и Реестром Возмездия.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

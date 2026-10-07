@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Test connection endpoint
+    match /test/{docId} {
+      allow read: if true;
+    }
+
+    // Collection of cursed victims / interacted persons (Corrupter DB)
+    match /victims/{victimId} {
+      allow read: if true;
+      allow create: if isValidId(victimId) 
+        && request.resource.data.fullName is string
+        && request.resource.data.fullName.size() > 0
+        && request.resource.data.fullName.size() <= 200;
+      allow update: if isValidId(victimId)
+        && request.resource.data.fullName is string
+        && request.resource.data.fullName.size() <= 200;
+      allow delete: if isValidId(victimId);
+    }
+
+    // Collection of curse ritual history (Corrupter DB)
+    match /history/{historyId} {
+      allow read: if true;
+      allow create: if isValidId(historyId)
+        && request.resource.data.victimName is string
+        && request.resource.data.victimName.size() <= 200;
+      allow update, delete: if isValidId(historyId);
+    }
+
+    // Collection of blessed souls (Sanctuary DB)
+    match /blessed_souls/{soulId} {
+      allow read: if true;
+      allow create: if isValidId(soulId)
+        && request.resource.data.fullName is string
+        && request.resource.data.fullName.size() > 0
+        && request.resource.data.fullName.size() <= 200;
+      allow update: if isValidId(soulId)
+        && request.resource.data.fullName is string
+        && request.resource.data.fullName.size() <= 200;
+      allow delete: if isValidId(soulId);
+    }
+
+    // Collection of blessing ceremony history (Sanctuary DB)
+    match /blessing_history/{historyId} {
+      allow read: if true;
+      allow create: if isValidId(historyId)
+        && request.resource.data.soulName is string
+        && request.resource.data.soulName.size() <= 200;
+      allow update, delete: if isValidId(historyId);
+    }
+  }
+}

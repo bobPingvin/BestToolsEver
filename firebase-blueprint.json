@@ -1,0 +1,83 @@
+{
+  "entities": {
+    "Victim": {
+      "title": "Victim",
+      "description": "Represents an individual who has been targeted by a hex or interacted with in the application",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique victim identifier" },
+        "fullName": { "type": "string", "description": "Full name or description of the target" },
+        "severityLevel": { "type": "string", "description": "Hex severity level (mild, severe, apocalyptic)" },
+        "sacrificeItem": { "type": "string", "description": "Catalyst or sacrificial item used" },
+        "status": { "type": "string", "description": "Current status in the Registry" },
+        "agonyLevel": { "type": "number", "description": "Current percentage of karmic drain (0-100)" },
+        "sealedBy": { "type": "string", "description": "Demon curator name" },
+        "createdAt": { "type": "string", "description": "Creation timestamp formatted" }
+      },
+      "required": ["id", "fullName", "severityLevel", "status"]
+    },
+    "RitualHistory": {
+      "title": "RitualHistory",
+      "description": "Chronicle record of an executed occult or weird ritual",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique ritual log identifier" },
+        "victimName": { "type": "string", "description": "Name of the target" },
+        "curseTitle": { "type": "string", "description": "Title of the cast hexes" },
+        "timestamp": { "type": "string", "description": "Timestamp string" },
+        "energySpent": { "type": "number", "description": "Occult mana units expended" },
+        "demonName": { "type": "string", "description": "Demon invoked" },
+        "statusText": { "type": "string", "description": "Result status text" }
+      },
+      "required": ["id", "victimName", "curseTitle", "timestamp"]
+    },
+    "BlessedSoul": {
+      "title": "BlessedSoul",
+      "description": "Represents an individual who has received divine blessings, sanctification or gifts in BlessedTools",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique soul identifier" },
+        "fullName": { "type": "string", "description": "Full name of the blessed person (ФИО)" },
+        "graceLevel": { "type": "number", "description": "Level of divine grace and protection (0-100)" },
+        "ritualType": { "type": "string", "description": "Type of blessing ritual performed" },
+        "patronSaint": { "type": "string", "description": "Guardian Archangel or Patron Saint" },
+        "holyRelic": { "type": "string", "description": "Sacred catalyst or holy relic used" },
+        "status": { "type": "string", "description": "Spiritual state (blessed, sanctified, shielded)" },
+        "createdAt": { "type": "string", "description": "Time of sanctification" }
+      },
+      "required": ["id", "fullName", "graceLevel", "status"]
+    },
+    "BlessingHistory": {
+      "title": "BlessingHistory",
+      "description": "Chronicle record of an executed divine blessing or miracle",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique blessing history entry identifier" },
+        "soulName": { "type": "string", "description": "Full name of the recipient" },
+        "blessingTitle": { "type": "string", "description": "Title of the bestowed divine gifts" },
+        "timestamp": { "type": "string", "description": "Bestowal timestamp string" },
+        "patronSaint": { "type": "string", "description": "Patron Saint or Archangel invoked" },
+        "statusText": { "type": "string", "description": "Divine blessing result description" }
+      },
+      "required": ["id", "soulName", "blessingTitle", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/victims/{victimId}": {
+      "schema": "Victim",
+      "description": "Collection of all targets and victims registered across the site"
+    },
+    "/history/{historyId}": {
+      "schema": "RitualHistory",
+      "description": "Collection of all executed rituals and magical impact history"
+    },
+    "/blessed_souls/{soulId}": {
+      "schema": "BlessedSoul",
+      "description": "Collection of all souls who have received holy grace and blessings in Sanctuary DB"
+    },
+    "/blessing_history/{historyId}": {
+      "schema": "BlessingHistory",
+      "description": "Collection of all divine miracles and blessing ceremonies executed"
+    }
+  }
+}

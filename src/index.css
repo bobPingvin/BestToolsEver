@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #060506;
+    color: #e5e5e5;
+    font-family: 'Marcellus', serif, system-ui;
+  }
+}
+
+/* Custom scrollbars with bloody red thumb */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0a0b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #450a0a;
+  border-radius: 4px;
+  border: 1px solid #7f1d1d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #991b1b;
+}
+
+/* Gothic Font Utility Classes */
+.font-gothic {
+  font-family: 'UnifrakturMaguntia', 'Cinzel Decorative', cursive, serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.font-medieval {
+  font-family: 'MedievalSharp', cursive, serif;
+}
+
+.font-swirl {
+  font-family: 'Marck Script', 'MedievalSharp', cursive, serif;
+}
+
+.font-vyaz {
+  font-family: 'Ruslan Display', 'Cinzel Decorative', cursive, serif;
+}
+
+/* Blood Drip Drop Keyframe */
+@keyframes bloodDrip {
+  0% {
+    transform: translateY(-100%) scaleY(1);
+    opacity: 0.8;
+  }
+  60% {
+    transform: translateY(0%) scaleY(1.3);
+    opacity: 1;
+  }
+  85% {
+    transform: translateY(10px) scaleY(0.9);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0%) scaleY(1);
+    opacity: 0.8;
+  }
+}
+
+/* Pentagram Spin Animation */
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverseSlow {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(220, 38, 38, 0.4)) drop-shadow(0 0 35px rgba(185, 28, 28, 0.2));
+    opacity: 0.7;
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(239, 68, 68, 0.75)) drop-shadow(0 0 60px rgba(220, 38, 38, 0.5));
+    opacity: 0.95;
+  }
+}
+
+@keyframes flameFlicker {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.75;
+    transform: scale(0.98, 1.02);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02, 0.98);
+  }
+  75% {
+    opacity: 0.85;
+    transform: scale(0.99, 1.01);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 35s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spinReverseSlow 45s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-flame {
+  animation: flameFlicker 1.8s ease-in-out infinite;
+}
+
+/* Screen shake for ritual casting */
+@keyframes satanicShake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-4px, -3px) rotate(-0.5deg); }
+  20% { transform: translate(4px, 2px) rotate(0.5deg); }
+  30% { transform: translate(-3px, 4px) rotate(-0.3deg); }
+  40% { transform: translate(3px, -2px) rotate(0.4deg); }
+  50% { transform: translate(-2px, 3px) rotate(-0.2deg); }
+  60% { transform: translate(3px, 1px) rotate(0.3deg); }
+  70% { transform: translate(-1px, -2px) rotate(-0.1deg); }
+  80% { transform: translate(2px, 2px) rotate(0.2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.satanic-shake {
+  animation: satanicShake 0.4s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+
+/* Angelic God Rays Animations */
+@keyframes divineBeamSway {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scaleX(0.98);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scaleX(1.04);
+  }
+}
+
+@keyframes divineFlarePulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-divine-beams {
+  animation: divineBeamSway 6s ease-in-out infinite;
+}
+
+/* Single continuous, silky-smooth 3D Tarot Card Rise & Spin Animation */
+@keyframes singleCardRiseAndSpin {
+  0% {
+    transform: translateY(520px) scale(0.38) rotateY(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px) scale(1) rotateY(360deg);
+    opacity: 1;
+  }
+}
+
+.animate-single-card-rise-spin {
+  animation: singleCardRiseAndSpin 2.6s cubic-bezier(0.18, 0.9, 0.28, 1) forwards;
+  transform-style: preserve-3d;
+}
+
+@keyframes tabletUnfurl {
+  0% {
+    opacity: 0;
+    transform: scale(0.93) translateY(20px);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+.animate-tablet-unfurl {
+  animation: tabletUnfurl 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-divine-flare {
+  animation: divineFlarePulse 3.5s ease-in-out infinite;
+}
